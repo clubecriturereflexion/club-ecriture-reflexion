@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Écriture et Réflexion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f7f5f0;
+            --text-color: #1a1a1a;
+            --muted-color: #7a7a7a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION RESPONSIVE */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-color);
+        }
+
+        .logo img {
+            height: 75px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: font-weight 0.2s ease;
+            white-space: nowrap;
+        }
+
+        nav a.active-nav {
+            font-weight: 800;
+        }
+
+        nav a:hover {
+            color: var(--muted-color);
+        }
+
+        /* PAGES */
+        .page {
+            display: none;
+            padding: 20px 60px 80px 60px;
+            min-height: calc(100vh - 100px);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ACCUEIL - SECTION HERO */
+        .hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 80px;
+            font-weight: 800;
+            line-height: 1.05;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .scroll-hint {
+            margin-top: 40px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--muted-color);
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 30px;
+            background-color: var(--muted-color);
+            margin: 12px auto 0 auto;
+        }
+
+        /* GRILLE COMMUNE AUX 3 PAGES */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            margin-top: 40px;
+            padding-top: 60px;
+            border-top: 1px solid #dcd8d0;
+        }
+
+        .col-left .section-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 25px;
+        }
+
+        .col-left h2 {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            text-align: justify;
+        }
+
+        .col-right .info-block {
+            margin-bottom: 40px;
+        }
+
+        .col-right .info-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 10px;
+        }
+
+        .col-right p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
+
+        /* LISTE DES PARUTIONS (SPECTRE) */
+        .issues-container {
+            max-width: 600px;
+            margin: 80px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            align-items: center;
+            transition: max-width 0.4s ease;
+        }
+
+        .issue-card-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        .issue-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+
+        .issue-cover {
+            width: 260px;
+            height: 365px;
+            object-fit: cover;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease;
+        }
+
+        .issue-cover:hover {
+            transform: scale(1.03);
+        }
+
+        .issue-number {
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .issue-upcoming {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            font-weight: 600;
+            padding: 40px 0;
+            text-align: center;
+            width: 100%;
+            border-top: 1px dashed #dcd8d0;
+        }
+
+        /* Panneau des articles à droite de la couverture */
+        .issue-articles-panel {
+            display: none;
+            width: 100%;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #dcd8d0;
+            animation: fadeIn 0.4s ease forwards;
+            text-align: left;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .issue-card-wrapper.expanded {
+            max-width: 850px;
+        }
+
+        .issue-card-wrapper.expanded .issue-main {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 50px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .issue-card-wrapper.expanded .issue-articles-panel {
+            display: block;
+            margin-top: 0;
+            margin-left: 0;
+            width: calc(100% - 310px);
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .articles-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .articles-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e8e4dc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .articles-list li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .articles-list li a:hover {
+            color: var(--muted-color);
+        }
+
+        .articles-list li span {
+            font-size: 12px;
+            color: var(--muted-color);
+            white-space: nowrap;
+        }
+
+        .read-all-btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .read-all-btn:hover {
+            background-color: var(--muted-color);
+        }
+
+        .spectre-disclaimer {
+            max-width: 700px;
+            margin: 60px auto 0 auto;
+            text-align: justify;
+            font-size: 13px;
+            color: var(--muted-color);
+            line-height: 1.5;
+            border-top: 1px solid #e8e4dc;
+            padding-top: 25px;
+        }
+
+        /* ADAPTATION MOBILE */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+            .logo img {
+                height: 55px;
+            }
+            nav {
+                gap: 15px;
+            }
+            nav a {
+                font-size: 11px;
+                letter-spacing: 1px;
+            }
+            .page {
+                padding: 20px 20px 60px 20px;
+            }
+            .hero h1 {
+                font-size: 45px;
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-top: 30px;
+                padding-top: 40px;
+            }
+            .col-left h2 {
+                font-size: 26px;
+            }
+            .issue-card-wrapper.expanded .issue-main {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .issue-card-wrapper.expanded .issue-articles-panel {
+                width: 100%;
+                margin-top: 25px;
+                padding-top: 25px;
+                border-top: 1px solid #dcd8d0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRE DE NAVIGATION -->
+    <header>
+        <div class="logo">
+            <a href="#" onclick="showPage('accueil', event)">
+                <img src="logo-er.png" alt="Logo Club ER">
+            </a>
+        </div>
+        <nav>
+            <a href="#" id="nav-spectre" onclick="showPage('spectre', event)">Spectre</a>
+            <a href="#" id="nav-borne" onclick="showPage('borne', event)">Borne de lecture</a>
+        </nav>
+    </header>
+
+    <!-- PAGE 1 : ACCUEIL -->
+    <div id="accueil" class="page active">
+        <div class="hero">
+            <h1>Écriture<br>& Réflexion</h1>
+            <div class="scroll-hint">Défiler</div>
+            <div class="scroll-line"></div>
+        </div>
+
+        <div class="content-grid">
+            <div class="col-left">
+                <div class="section-label">Le club</div>
+                <h2>Ce club vise à mettre en avant la culture auprès des étudiants et à s'essayer à l'écriture.</h2>
+            </div>
+            <div class="col-right">
+                <div class="info-block">
+                    <div class="info-label">Nos actions</div>
+                    <p>Pour cela, nous mettons à disposition une borne d'échange de livres au sein de l'INSA (sur la mezzanine) et nous mettons en place la parution d'une revue étudiante : Spectre.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 : SPECTRE -->
+    <div id="spectre" class="page">
+        <div class="hero" style="height: 40vh;">
+            <h1>Spectre</h1>
+            <div class="scroll-hint">“Encourager la curiosité”</div>
+        </div>
+
+        <div class="content-grid">
+            <div class="col-left">
+                <div class="section-label">Revue littéraire</div>
+                <h2>Un espace libre pour exprimer la créativité et la réflexion étudiante à l'INSA.</h2>
+            </div>
+            <div class="col-right">
+                <div class="info-block">
+                    <div class="info-label">Principe</div>
+                    <p>Notre revue indépendante permet aux étudiants de l'INSA Strasbourg de partager des articles fouillés, des essais ou des critiques autour de sujets aussi variés que la pop culture, la philosophie ou l’Histoire.</p>
+                </div>
+                <div class="info-block">
+                    <div class="info-label">Venez écrire</div>
+                    <p>Le but est avant tout que cette revue soit participative et ouverte à tous, c’est pourquoi si tu souhaite participer en proposant un sujet ou en écrivant un article envoie nous un mail à clubecriturereflexion@gmail.com (il faudra juste que tu sois amicaliste ;)).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="issues-container" id="issues-container">
+            <!-- Parution 1 -->
+            <div class="issue-card-wrapper" id="issue-1">
+                <div class="issue-main" onclick="toggleIssue('issue-1')">
+                    <div>
+                        <div class="issue-number">N° 01</div>
+                        <img src="Capture d’écran 2026-06-08 220415.png" alt="Couverture N° 01" class="issue-cover">
+                    </div>
+                    <div class="issue-articles-panel">
+                        <div class="issue-number" style="margin-bottom: 15px;">Sommaire des articles</div>
+                        <ul class="articles-list">
+                            <li><a href="pdf/art-1-1.pdf" target="_blank">Introduction : L'éveil des sens</a> <span>p. 02</span></li>
+                            <li><a href="pdf/art-1-2.pdf" target="_blank">Regard sur l'art moderne</a> <span>p. 08</span></li>
+                            <li><a href="pdf/art-1-3.pdf" target="_blank">Entretien avec les fondateurs</a> <span>p. 15</span></li>
+                        </ul>
+                        <a href="pdf/numero-1.pdf" target="_blank" class="read-all-btn">Tout lire</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parution suivante -->
+            <div class="issue-upcoming">
+                N° 02 — À venir
+            </div>
+        </div>
+
+        <div class="spectre-disclaimer">
+            * Les propos tenus dans les articles publiés dans la revue Spectre n'engagent que la responsabilité de leurs auteurs respectifs et ne reflètent pas nécessairement la position officielle du club ou de l'école.
+        </div>
+    </div>
+
+    <!-- PAGE 3 : BORNE DE LECTURE -->
+    <div id="borne" class="page">
+        <div class="hero" style="height: 40vh;">
+            <h1>Borne de lecture</h1>
+            <div class="scroll-hint">Partage et échange</div>
+        </div>
+
+        <div class="content-grid">
+            <div class="col-left">
+                <div class="section-label">Espace d'échange</div>
+                <h2>Faire circuler les livres et partager nos coups de cœur au quotidien à l’INSA.</h2>
+            </div>
+            <div class="col-right">
+                <div class="info-block">
+                    <div class="info-label">Fonctionnement</div>
+                    <p>La borne de lecture est installée sur la mezzanine du grand hall. Tu peux venir y piocher un roman, une BD ou autre pour le lire tranquillement chez toi ou directement sur place.</p>
+                </div>
+                <div class="info-block">
+                    <div class="info-label">Partager</div>
+                    <p>Pour faire vivre cette idée : si tu le peux, déposes-y un livre que tu as aimé afin de faire tourner la culture. N'hésite pas à coller un petit post-it dessus pour raconter en quelques mots pourquoi les autres devraient le lire.</p>
+                </div>
+                <div class="info-block">
+                    <div class="info-label">Précision</div>
+                    <p>On compte sur la bienveillance de chacun pour que este système tourne bien (ne prends pas tous les livres stp). Par contre, si tu cherches un livre très précis, tu auras plus de chances de le trouver à la bibliothèque de l'INSA ou en librairie qu’ici !</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId, event) {
+            if (event) event.preventDefault();
+
+            // Cacher toutes les pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+            
+            // Afficher la page demandée
+            document.getElementById(pageId).classList.add('active');
+
+            // Gérer le gras sur la navbar
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-nav'));
+            if(pageId === 'spectre') {
+                document.getElementById('nav-spectre').classList.add('active-nav');
+            } else if(pageId === 'borne') {
+                document.getElementById('nav-borne').classList.add('active-nav');
+            }
+            
+            // Remonter tout en haut
+            window.scrollTo(0, 0);
+        }
+
+        function toggleIssue(issueId) {
+            const wrapper = document.getElementById(issueId);
+            const container = document.getElementById('issues-container');
+            
+            if (wrapper.classList.contains('expanded')) {
+                wrapper.classList.remove('expanded');
+                container.style.maxWidth = '600px';
+                return;
+            }
+
+            document.querySelectorAll('.issue-card-wrapper').forEach(card => {
+                card.classList.remove('expanded');
+            });
+
+            wrapper.classList.add('expanded');
+            container.style.maxWidth = '850px';
+        }
+    </script>
+</body>
+</html>
