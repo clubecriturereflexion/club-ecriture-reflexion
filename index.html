@@ -109,7 +109,7 @@
             margin: 12px auto 0 auto;
         }
 
-        /* GRILLE COMMUNE AUX 3 PAGES */
+        /* GRILLE COMMUNE AUX PAGES */
         .content-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
@@ -194,7 +194,7 @@
             animation: fadeIn 0.4s ease forwards;
         }
 
-        /* SECTION SONDAGES (SANS ENCADRÉ DE FOND) */
+        /* SECTION SONDAGES */
         .month-group {
             margin-bottom: 60px;
         }
@@ -342,7 +342,7 @@
             line-height: 1.4;
         }
 
-        /* SECTION THÈMES CRÉATIFS (SANS ENCADRÉ DE FOND) */
+        /* SECTION THÈMES CRÉATIFS */
         .creative-section-title {
             font-size: 14px;
             letter-spacing: 2.5px;
@@ -611,10 +611,17 @@
                 padding-top: 25px;
                 border-top: 1px solid #dcd8d0;
             }
+            .read-all-btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
             .btn-sources {
                 margin-left: 0;
-                margin-top: 10px;
+                margin-top: 0;
                 display: block;
+                width: 100%;
                 text-align: center;
             }
         }
@@ -761,22 +768,16 @@
         <!-- SOUS-ONGLET 1 : SONDAGES -->
         <div id="sub-sondages" class="sub-tab-content active">
             <div class="month-group">
-                <div class="month-title">Juin 2026</div>
+                <div class="month-title">Août 2026</div>
 
-                <!-- Sondage 1 (Actif - Oui/Non + option commentaire) -->
-                <div class="poll-card" id="poll-1" data-end-date="2026-07-01">
+                <!-- Sondage 1 -->
+                <div class="poll-card" id="poll-1">
                     <div class="poll-question">L'association devrait-elle organiser une soirée débat littéraire par mois ?</div>
-                    <div class="poll-body" id="poll-body-1">
-                        <!-- Généré dynamiquement en JS -->
-                    </div>
                 </div>
 
                 <!-- Sondage 2 -->
-                <div class="poll-card" id="poll-2" data-end-date="2026-07-01">
+                <div class="poll-card" id="poll-2">
                     <div class="poll-question">Avez-vous déjà emprunté un livre depuis la borne de lecture de la mezzanine ?</div>
-                    <div class="poll-body" id="poll-body-2">
-                        <!-- Généré dynamiquement en JS -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -804,6 +805,7 @@
         </div>
     </div>
 
+    <!-- SCRIPT JS -->
     <script>
         function showPage(pageId, event) {
             if (event) event.preventDefault();
@@ -851,40 +853,35 @@
             container.style.maxWidth = '850px';
         }
 
-        /* SYSTÈMES DE SONDAGES (OUI/NON + COMMENTAIRE LIBRE + STOCKAGE LOCAL) */
+        /* GESTION DIRECTE DES SONDAGES */
         const pollsData = {
             'poll-1': {
                 options: ["Oui", "Non"],
                 votes: [45, 12],
-                publishDate: '2026-08-01',
                 comments: ["Excellente idée, ça animerait le campus.", "Tout dépend de l'horaire choisi."]
             },
             'poll-2': {
                 options: ["Oui", "Non"],
                 votes: [78, 34],
-                publishDate: '2026-08-05',
                 comments: ["J'y ai trouvé un super roman policier la semaine dernière !"]
             }
         };
 
         function initPolls() {
-            const now = new Date();
-
             for (let pollId in pollsData) {
-                const pollElem = document.getElementById(pollId);
-                if (!pollElem) continue;
+                const pollCard = document.getElementById(pollId);
+                if (!pollCard) continue;
 
-                const pubDate = new Date(pollsData[pollId].publishDate);
-                const diffTime = Math.abs(now - pubDate);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                
-                const bodyElem = document.getElementById('body-' + pollId);
+                let bodyElem = pollCard.querySelector('.poll-body');
+                if (!bodyElem) {
+                    bodyElem = document.createElement('div');
+                    bodyElem.className = 'poll-body';
+                    pollCard.appendChild(bodyElem);
+                }
+
                 const hasVoted = localStorage.getItem('voted_' + pollId);
                 
-                // Clôture automatique après 14 jours
-                if (diffDays > 14) {
-                    renderResults(pollId, bodyElem, "Sondage clos — Résultats finaux :");
-                } else if (hasVoted) {
+                if (hasVoted) {
                     renderResults(pollId, bodyElem, "Merci pour votre vote ! Résultats actuels :");
                 } else {
                     renderVotingForm(pollId, bodyElem);
@@ -926,7 +923,6 @@
             });
             html += `</div>`;
 
-            // Afficher les commentaires s'il y en a
             if (data.comments && data.comments.length > 0) {
                 html += `<div class="poll-comments-list">
                     <div class="poll-comments-title">Commentaires de la communauté :</div>`;
@@ -949,7 +945,6 @@
             const optIndex = parseInt(selected.value);
             pollsData[pollId].votes[optIndex]++;
 
-            // Récupérer le commentaire optionnel
             const commentInput = document.getElementById('comment-' + pollId);
             if (commentInput && commentInput.value.trim() !== '') {
                 if (!pollsData[pollId].comments) {
@@ -958,10 +953,10 @@
                 pollsData[pollId].comments.push(commentInput.value.trim());
             }
             
-            // Enregistrement local anti-triche 1 vote par utilisateur
             localStorage.setItem('voted_' + pollId, 'true');
 
-            const bodyElem = document.getElementById('body-' + pollId);
+            const pollCard = document.getElementById(pollId);
+            const bodyElem = pollCard.querySelector('.poll-body');
             renderResults(pollId, bodyElem, "Vote enregistré ! Résultats :");
         }
 
