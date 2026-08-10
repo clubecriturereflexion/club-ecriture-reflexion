@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -155,6 +154,241 @@
             text-align: justify;
         }
 
+        /* SOUS-ONGLETS COMMUNAUTÉ */
+        .sub-nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0 60px 0;
+            border-bottom: 1px solid #dcd8d0;
+            padding-bottom: 15px;
+        }
+
+        .sub-nav-btn {
+            background: none;
+            border: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            cursor: pointer;
+            font-weight: 400;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .sub-nav-btn.active-sub {
+            color: var(--text-color);
+            font-weight: 800;
+        }
+
+        .sub-tab-content {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .sub-tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* SECTION SONDAGES (SANS ENCADRÉ DE FOND) */
+        .month-group {
+            margin-bottom: 60px;
+        }
+
+        .month-title {
+            font-size: 14px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 35px;
+            border-left: 2px solid var(--text-color);
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .poll-card {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #e8e4dc;
+            padding: 0 0 45px 0;
+            margin-bottom: 45px;
+        }
+
+        .poll-question {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            letter-spacing: -0.5px;
+        }
+
+        .poll-options {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .poll-option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .poll-comment-input {
+            width: 100%;
+            background: transparent;
+            border: 1px solid #dcd8d0;
+            padding: 12px 15px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            resize: vertical;
+            min-height: 70px;
+            border-radius: 4px;
+        }
+
+        .poll-comment-input:focus {
+            outline: none;
+            border-color: var(--text-color);
+        }
+
+        .poll-btn {
+            background-color: var(--text-color);
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .poll-btn:hover {
+            background-color: var(--muted-color);
+        }
+
+        .poll-results {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .result-bar-container {
+            font-size: 14px;
+        }
+
+        .result-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .result-bar-bg {
+            background: #e8e4dc;
+            height: 8px;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .result-bar-fill {
+            background: var(--text-color);
+            height: 100%;
+            width: 0%;
+            transition: width 0.6s ease;
+        }
+
+        .poll-status-closed {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .poll-comments-list {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #e8e4dc;
+        }
+
+        .poll-comments-title {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .comment-item {
+            font-size: 13px;
+            color: #444;
+            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        /* SECTION THÈMES CRÉATIFS (SANS ENCADRÉ DE FOND) */
+        .creative-section-title {
+            font-size: 14px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 25px;
+            border-left: 2px solid var(--text-color);
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .creative-block {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .creative-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .creative-block p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
+
+        .winner-box {
+            margin-top: 25px;
+            padding-left: 20px;
+            border-left: 2px solid var(--text-color);
+        }
+
+        .winner-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
         /* LISTE DES PARUTIONS (SPECTRE) */
         .issues-container {
             max-width: 600px;
@@ -216,7 +450,6 @@
             border-top: 1px dashed #dcd8d0;
         }
 
-        /* Panneau des articles à droite de la couverture */
         .issue-articles-panel {
             display: none;
             width: 100%;
@@ -302,7 +535,6 @@
             background-color: var(--muted-color);
         }
 
-        /* Style du bouton "Les sources" */
         .btn-sources {
             display: inline-block;
             margin-top: 10px;
@@ -365,6 +597,9 @@
             .col-left h2 {
                 font-size: 26px;
             }
+            .sub-nav {
+                gap: 20px;
+            }
             .issue-card-wrapper.expanded .issue-main {
                 flex-direction: column;
                 align-items: center;
@@ -397,6 +632,7 @@
         <nav>
             <a href="#" id="nav-spectre" onclick="showPage('spectre', event)">Spectre</a>
             <a href="#" id="nav-borne" onclick="showPage('borne', event)">Borne de lecture</a>
+            <a href="#" id="nav-communaute" onclick="showPage('communaute', event)">Communauté</a>
         </nav>
     </header>
 
@@ -509,27 +745,92 @@
         </div>
     </div>
 
+    <!-- PAGE 4 : COMMUNAUTÉ -->
+    <div id="communaute" class="page">
+        <div class="hero" style="height: 35vh;">
+            <h1>Communauté</h1>
+            <div class="scroll-hint">Vos avis & vos créations</div>
+        </div>
+
+        <!-- SOUS-ONGLETS -->
+        <div class="sub-nav">
+            <button class="sub-nav-btn active-sub" onclick="showSubTab('sondages', event)">Sondages</button>
+            <button class="sub-nav-btn" onclick="showSubTab('creatif', event)">Thèmes créatifs</button>
+        </div>
+
+        <!-- SOUS-ONGLET 1 : SONDAGES -->
+        <div id="sub-sondages" class="sub-tab-content active">
+            <div class="month-group">
+                <div class="month-title">Juin 2026</div>
+
+                <!-- Sondage 1 (Actif - Oui/Non + option commentaire) -->
+                <div class="poll-card" id="poll-1" data-end-date="2026-07-01">
+                    <div class="poll-question">L'association devrait-elle organiser une soirée débat littéraire par mois ?</div>
+                    <div class="poll-body" id="poll-body-1">
+                        <!-- Généré dynamiquement en JS -->
+                    </div>
+                </div>
+
+                <!-- Sondage 2 -->
+                <div class="poll-card" id="poll-2" data-end-date="2026-07-01">
+                    <div class="poll-question">Avez-vous déjà emprunté un livre depuis la borne de lecture de la mezzanine ?</div>
+                    <div class="poll-body" id="poll-body-2">
+                        <!-- Généré dynamiquement en JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOUS-ONGLET 2 : THÈMES CRÉATIFS -->
+        <div id="sub-creatif" class="sub-tab-content">
+            <div class="creative-block">
+                <div class="creative-section-title">Défi du moment</div>
+                <div class="creative-title">Écrire un poème sur sa famille en alexandrins</div>
+                <p>Pour ce nouveau mois, l'exercice demande de respecter la rime classique en vers de douze pieds, tout en capturant l'essence, les travers ou les souvenirs de votre foyer. Laissez libre cours à votre plume !</p>
+            </div>
+
+            <div class="creative-block" style="border-bottom: none;">
+                <div class="creative-section-title">Ancien challenge créatif</div>
+                <div class="creative-title" style="font-size: 22px;">Le voyage immobile</div>
+                <p style="margin-bottom: 20px;">Le thème précédent consistait à raconter une grande aventure sans bouger de sa chaise.</p>
+                
+                <div class="winner-box">
+                    <div class="winner-label">Texte gagnant — par Léa (3e année)</div>
+                    <p style="font-style: italic; color: #444; line-height: 1.7;">
+                        "Assise face au radiateur qui gronde, je navigue entre les plis de la nappe cirée. Le café refroidit, mais les Andes m'attendent derrière le givre de la vitre. Pas besoin de billet de train quand l'esprit s'accroche au souvenir d'une vieille carte postale jaunie par le soleil d'août..."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         function showPage(pageId, event) {
             if (event) event.preventDefault();
 
-            // Cacher toutes les pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(p => p.classList.remove('active'));
             
-            // Afficher la page demandée
             document.getElementById(pageId).classList.add('active');
 
-            // Gérer le gras sur la navbar
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-nav'));
             if(pageId === 'spectre') {
                 document.getElementById('nav-spectre').classList.add('active-nav');
             } else if(pageId === 'borne') {
                 document.getElementById('nav-borne').classList.add('active-nav');
+            } else if(pageId === 'communaute') {
+                document.getElementById('nav-communaute').classList.add('active-nav');
             }
             
-            // Remonter tout en haut
             window.scrollTo(0, 0);
+        }
+
+        function showSubTab(tabId, event) {
+            document.querySelectorAll('.sub-tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.sub-nav-btn').forEach(btn => btn.classList.remove('active-sub'));
+
+            document.getElementById('sub-' + tabId).classList.add('active');
+            event.target.classList.add('active-sub');
         }
 
         function toggleIssue(issueId) {
@@ -549,6 +850,124 @@
             wrapper.classList.add('expanded');
             container.style.maxWidth = '850px';
         }
+
+        /* SYSTÈMES DE SONDAGES (OUI/NON + COMMENTAIRE LIBRE + STOCKAGE LOCAL) */
+        const pollsData = {
+            'poll-1': {
+                options: ["Oui", "Non"],
+                votes: [45, 12],
+                publishDate: '2026-08-01',
+                comments: ["Excellente idée, ça animerait le campus.", "Tout dépend de l'horaire choisi."]
+            },
+            'poll-2': {
+                options: ["Oui", "Non"],
+                votes: [78, 34],
+                publishDate: '2026-08-05',
+                comments: ["J'y ai trouvé un super roman policier la semaine dernière !"]
+            }
+        };
+
+        function initPolls() {
+            const now = new Date();
+
+            for (let pollId in pollsData) {
+                const pollElem = document.getElementById(pollId);
+                if (!pollElem) continue;
+
+                const pubDate = new Date(pollsData[pollId].publishDate);
+                const diffTime = Math.abs(now - pubDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                const bodyElem = document.getElementById('body-' + pollId);
+                const hasVoted = localStorage.getItem('voted_' + pollId);
+                
+                // Clôture automatique après 14 jours
+                if (diffDays > 14) {
+                    renderResults(pollId, bodyElem, "Sondage clos — Résultats finaux :");
+                } else if (hasVoted) {
+                    renderResults(pollId, bodyElem, "Merci pour votre vote ! Résultats actuels :");
+                } else {
+                    renderVotingForm(pollId, bodyElem);
+                }
+            }
+        }
+
+        function renderVotingForm(pollId, container) {
+            const data = pollsData[pollId];
+            let html = '<div class="poll-options">';
+            data.options.forEach((opt, index) => {
+                html += `<label class="poll-option-label">
+                    <input type="radio" name="opt-${pollId}" value="${index}"> ${opt}
+                </label>`;
+            });
+            html += `</div>`;
+            html += `<textarea class="poll-comment-input" id="comment-${pollId}" placeholder="Ajouter un petit commentaire (optionnel)..."></textarea>`;
+            html += `<button class="poll-btn" onclick="submitVote('${pollId}')">Voter</button>`;
+            container.innerHTML = html;
+        }
+
+        function renderResults(pollId, container, statusText) {
+            const data = pollsData[pollId];
+            const totalVotes = data.votes.reduce((a, b) => a + b, 0);
+
+            let html = `<div class="poll-status-closed">${statusText}</div><div class="poll-results">`;
+            data.options.forEach((opt, index) => {
+                const count = data.votes[index];
+                const percent = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
+                html += `<div class="result-bar-container">
+                    <div class="result-info">
+                        <span>${opt}</span>
+                        <span>${percent}% (${count} votes)</span>
+                    </div>
+                    <div class="result-bar-bg">
+                        <div class="result-bar-fill" style="width: ${percent}%;"></div>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+
+            // Afficher les commentaires s'il y en a
+            if (data.comments && data.comments.length > 0) {
+                html += `<div class="poll-comments-list">
+                    <div class="poll-comments-title">Commentaires de la communauté :</div>`;
+                data.comments.forEach(c => {
+                    html += `<div class="comment-item">"${c}"</div>`;
+                });
+                html += `</div>`;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function submitVote(pollId) {
+            const selected = document.querySelector(`input[name="opt-${pollId}"]:checked`);
+            if (!selected) {
+                alert("Veuillez sélectionner 'Oui' ou 'Non' avant de voter.");
+                return;
+            }
+
+            const optIndex = parseInt(selected.value);
+            pollsData[pollId].votes[optIndex]++;
+
+            // Récupérer le commentaire optionnel
+            const commentInput = document.getElementById('comment-' + pollId);
+            if (commentInput && commentInput.value.trim() !== '') {
+                if (!pollsData[pollId].comments) {
+                    pollsData[pollId].comments = [];
+                }
+                pollsData[pollId].comments.push(commentInput.value.trim());
+            }
+            
+            // Enregistrement local anti-triche 1 vote par utilisateur
+            localStorage.setItem('voted_' + pollId, 'true');
+
+            const bodyElem = document.getElementById('body-' + pollId);
+            renderResults(pollId, bodyElem, "Vote enregistré ! Résultats :");
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initPolls();
+        });
     </script>
 </body>
 </html>
