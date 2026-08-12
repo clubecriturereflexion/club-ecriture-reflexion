@@ -159,7 +159,7 @@
             display: flex;
             justify-content: center;
             gap: 40px;
-            margin: 40px 0 60px 0;
+            margin: 60px 0;
             border-bottom: 1px solid #dcd8d0;
             padding-bottom: 15px;
         }
@@ -754,9 +754,22 @@
 
     <!-- PAGE 4 : COMMUNAUTÉ -->
     <div id="communaute" class="page">
-        <div class="hero" style="height: 35vh;">
+        <div class="hero" style="height: 40vh;">
             <h1>Communauté</h1>
             <div class="scroll-hint">Vos avis & vos créations</div>
+        </div>
+
+        <div class="content-grid">
+            <div class="col-left">
+                <div class="section-label">Espace participatif</div>
+                <h2>Impliquez-vous dans la vie du club à travers nos sondages et nos défis d'écriture.</h2>
+            </div>
+            <div class="col-right">
+                <div class="info-block">
+                    <div class="info-label">Participez</div>
+                    <p>Cet onglet est le vôtre. Donnez votre avis sur les projets à venir du club et venez relever les défis d'écriture mensuels proposés aux étudiants.</p>
+                </div>
+            </div>
         </div>
 
         <!-- SOUS-ONGLETS -->
@@ -957,7 +970,7 @@
 
             const pollCard = document.getElementById(pollId);
             const bodyElem = pollCard.querySelector('.poll-body');
-            renderResults(pollId, bodyElem, "Vote enregistré ! Résultats :");
+            renderResults(pollId, bodyElem, "Merci pour votre vote ! Résultats actuels :");
         }
 
         window.addEventListener('DOMContentLoaded', () => {
