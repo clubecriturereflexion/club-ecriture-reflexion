@@ -829,11 +829,13 @@
                 <!-- Sondage 1 -->
                 <div class="poll-card" id="poll-1">
                     <div class="poll-question">L'association devrait-elle organiser une soirée débat littéraire par mois ?</div>
+                    <div class="poll-body"></div>
                 </div>
 
                 <!-- Sondage 2 -->
                 <div class="poll-card" id="poll-2">
                     <div class="poll-question">Avez-vous déjà emprunté un livre depuis la borne de lecture de la mezzanine ?</div>
+                    <div class="poll-body"></div>
                 </div>
             </div>
         </div>
@@ -973,58 +975,64 @@
         function renderResults(pollId, container, statusText) {
             const data = pollsData[pollId];
             const totalVotes = data.votes.reduce((a, b) => a + b, 0);
-
-            let html = `<div class="poll-status-closed">${statusText}</div><div class="poll-results">`;
+            
+            let html = `<div class="poll-status-closed">${statusText}</div>`;
+            html += `<div class="poll-results">`;
+            
             data.options.forEach((opt, index) => {
                 const count = data.votes[index];
                 const percent = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
-                html += `<div class="result-bar-container">
-                    <div class="result-info">
-                        <span>${opt}</span>
-                        <span>${percent}% (${count} votes)</span>
+                html += `
+                    <div class="result-bar-container">
+                        <div class="result-info">
+                            <span>${opt}</span>
+                            <span>${percent}% (${count} votes)</span>
+                        </div>
+                        <div class="result-bar-bg">
+                            <div class="result-bar-fill" style="width: ${percent}%;"></div>
+                        </div>
                     </div>
-                    <div class="result-bar-bg">
-                        <div class="result-bar-fill" style="width: ${percent}%;"></div>
-                    </div>
-                </div>`;
+                `;
             });
             html += `</div>`;
 
             if (data.comments && data.comments.length > 0) {
-                html += `<div class="poll-comments-list">
-                    <div class="poll-comments-title">Commentaires de la communauté :</div>`;
-                data.comments.forEach(c => {
-                    html += `<div class="comment-item">"${c}"</div>`;
+                html += `
+                    <div class="poll-comments-list">
+                        <div class="poll-comments-title">Commentaires de la communauté</div>
+                `;
+                data.comments.forEach(comment => {
+                    html += `<div class="comment-item">“${comment}”</div>`;
                 });
-                html += `</div>`; 
+                html += `</div>`;
             }
+
             container.innerHTML = html;
         }
 
         function submitVote(pollId) {
-            const selected = document.querySelector(`input[name="opt-${pollId}"]:checked`);
-            if (!selected) {
-                alert("Veuillez sélectionner une option pour voter.");
+            const selectedInput = document.querySelector(`input[name="opt-${pollId}"]:checked`);
+            if (!selectedInput) {
+                alert("Veuillez sélectionner une option avant de voter.");
                 return;
             }
-            const optIndex = parseInt(selected.value);
+
+            const optIndex = parseInt(selectedInput.value);
             pollsData[pollId].votes[optIndex]++;
 
             const commentInput = document.getElementById(`comment-${pollId}`);
             if (commentInput && commentInput.value.trim() !== "") {
-                if (!pollsData[pollId].comments) pollsData[pollId].comments = [];
                 pollsData[pollId].comments.push(commentInput.value.trim());
             }
 
             localStorage.setItem('voted_' + pollId, 'true');
+
             const pollCard = document.getElementById(pollId);
             const bodyElem = pollCard.querySelector('.poll-body');
             renderResults(pollId, bodyElem, "Merci pour votre vote ! Résultats actuels :");
         }
 
-        window.onload = function() {
-            initPolls();
-        };
+        document.addEventListener("DOMContentLoaded", initPolls);
     </script>
 </body>
 </html>
