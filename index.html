@@ -979,6 +979,7 @@
             let html = `<div class="poll-status-closed">${statusText}</div>`;
             html += `<div class="poll-results">`;
             
+            data.options.root = data.options; // safety
             data.options.forEach((opt, index) => {
                 const count = data.votes[index];
                 const percent = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
