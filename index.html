@@ -220,42 +220,69 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* SECTION RECOMMANDATIONS D'ADRESSES */
+        /* SECTION RECOMMANDATIONS D'ADRESSES (STYLE ÉDITORIAL) */
         .reco-category {
-            margin-bottom: 60px;
+            margin-bottom: 70px;
+        }
+
+        .reco-category-header {
+            margin-bottom: 30px;
+            border-left: 2px solid var(--text-color);
+            padding-left: 15px;
         }
 
         .reco-category-title {
-            font-size: 14px;
-            letter-spacing: 2.5px;
+            font-size: 20px;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .reco-category-banner {
+            font-size: 13px;
+            line-height: 1.6;
             color: var(--muted-color);
-            margin-bottom: 30px;
-            border-left: 2px solid var(--text-color);
-            padding-left: 12px;
-            font-weight: 600;
+            font-style: italic;
         }
 
-        .reco-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
-
-        .reco-card {
-            border: 1px solid #e8e4dc;
-            padding: 25px;
-            background: #fff;
+        .reco-editorial-list {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .reco-editorial-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 30px;
+            align-items: baseline;
+            padding: 24px 0;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .reco-editorial-item:first-child {
+            border-top: 1px solid #e8e4dc;
+        }
+
+        .reco-info-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .reco-meta-line {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .reco-name {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 800;
-            margin-bottom: 8px;
             letter-spacing: -0.3px;
+            color: var(--text-color);
         }
 
         .reco-type {
@@ -263,7 +290,6 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--muted-color);
-            margin-bottom: 15px;
             font-weight: 600;
         }
 
@@ -271,19 +297,18 @@
             font-size: 14px;
             line-height: 1.5;
             color: #444;
-            margin-bottom: 20px;
         }
 
         .reco-link {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--text-color);
             text-decoration: none;
             border-bottom: 1px solid var(--text-color);
             padding-bottom: 2px;
-            align-self: flex-start;
+            white-space: nowrap;
             transition: color 0.2s, border-color 0.2s;
         }
 
@@ -563,6 +588,13 @@
             .sub-nav {
                 gap: 20px;
             }
+            .reco-editorial-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .reco-link {
+                align-self: flex-start;
+            }
             .issue-card-wrapper.expanded .issue-main {
                 flex-direction: column;
                 align-items: center;
@@ -723,7 +755,7 @@
     <div id="communaute" class="page">
         <div class="hero" style="height: 40vh;">
             <h1>Communauté</h1>
-            <div class="scroll-hint">Les avis des insassiens & les thèmes créatifs</div>
+            <div class="scroll-hint">Les recommandations culturelles & les thèmes créatifs</div>
         </div>
 
         <div class="content-grid">
@@ -748,48 +780,246 @@
         <!-- SOUS-ONGLET 1 : RECOMMANDATIONS D'ADRESSES -->
         <div id="sub-sondages" class="sub-tab-content active">
             
-            <!-- Catégorie 1 : Librairies & Culture -->
+            <div style="margin-bottom: 50px; text-align: center;">
+                <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; letter-spacing: -0.5px;">Culture à Strasbourg : Les Recommandations du club</h3>
+                <p style="font-size: 15px; color: var(--muted-color); max-width: 650px; margin: 0 auto; line-height: 1.6;">Sélection d'adresses étudiantes culturelles de la ville.</p>
+            </div>
+
+            <!-- Catégorie 1 : Acheter de la lecture -->
             <div class="reco-category">
-                <div class="reco-category-title">Librairies & Culture</div>
-                <div class="reco-grid">
-                    <div class="reco-card">
-                        <div>
-                            <div class="reco-name">Librairie Kléber</div>
-                            <div class="reco-type">Librairie générale</div>
-                            <div class="reco-desc">L'incontournable à Strasbourg. Un choix immense, des conseils avisés et un espace café parfait pour bouquiner.</div>
+                <div class="reco-category-header">
+                    <div class="reco-category-title">1. Acheter de la lecture</div>
+                </div>
+                <div class="reco-editorial-list">
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Les marchés aux puces de Kléber</span>
+                                <span class="reco-type">Marché aux puces</span>
+                            </div>
+                            <div class="reco-desc">Ouvert les mardis, jeudis et samedis de 9h à 19h. Idéal pour chiner des bouquins à petit prix.</div>
                         </div>
-                        <a href="https://www.librairiekleber.com" target="_blank" class="reco-link">Découvrir →</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Place+Kléber+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
                     </div>
-                    <div class="reco-card">
-                        <div>
-                            <div class="reco-name">Quai des Brumes</div>
-                            <div class="reco-type">Librairie indépendante</div>
-                            <div class="reco-desc">Une sélection pointue de littérature, de BD et de sciences humaines au cœur de la ville.</div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Magasin solidaire Oxfam</span>
+                                <span class="reco-type">Boutique solidaire</span>
+                            </div>
+                            <div class="reco-desc">Livres d'occasion et seconde main dans le centre de Strasbourg.</div>
                         </div>
-                        <a href="https://quai-des-brumes.fr" target="_blank" class="reco-link">Découvrir →</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=5-7+Rue+de+la+Division+Leclerc+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Librairie d'occasion Ex Libro</span>
+                                <span class="reco-type">Librairie d'occasion</span>
+                            </div>
+                            <div class="reco-desc"></div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=22+B+Rue+des+Frères+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Emmaüs</span>
+                                <span class="reco-type">Magasin solidaire</span>
+                            </div>
+                            <div class="reco-desc">Situé à 30 min du centre-ville.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=5+Chem.+de+la+Holtzmatt+67200+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Au Marché du Livre</span>
+                                <span class="reco-type">Librairie d'occasion</span>
+                            </div>
+                            <div class="reco-desc">Un choix varié d'ouvrages anciens et récents.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=9+Rue+du+Saint-Gothard+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Farfafouilles</span>
+                                <span class="reco-type">Spécialisé BD & mangas</span>
+                            </div>
+                            <div class="reco-desc">Pour les amateurs de bandes dessinées et mangas.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=5+Pl.+Saint-Étienne+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Librairie du Monde Entier</span>
+                                <span class="reco-type">Langues étrangères</span>
+                            </div>
+                            <div class="reco-desc">Idéal pour trouver des livres en langues étrangères.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=31+Pl.+Kléber+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Catégorie 2 : Cafés & Espaces de travail -->
+            <!-- Catégorie 2 : Cinémas -->
             <div class="reco-category">
-                <div class="reco-category-title">Cafés & Espaces de travail</div>
-                <div class="reco-grid">
-                    <div class="reco-card">
-                        <div>
-                            <div class="reco-name">Bistrot & Câlin</div>
-                            <div class="reco-type">Café cosy</div>
-                            <div class="reco-desc">Idéal pour réviser ou écrire un poème au calme avec une bonne boisson chaude.</div>
+                <div class="reco-category-header">
+                    <div class="reco-category-title">2. Cinémas</div>
+                    <div class="reco-category-banner">Bon plan étudiant : Utilise ton Pass Culture en présentant l'autocollant de ta carte universitaire INSA, et profite aussi des offres du dispositif régional Jeun'Est.</div>
+                </div>
+                <div class="reco-editorial-list">
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Cinéma Cosmos</span>
+                                <span class="reco-type">Art et essais</span>
+                            </div>
+                            <div class="reco-desc">Programmation indépendante au centre de Strasbourg.</div>
                         </div>
-                        <a href="#" class="reco-link">En savoir plus →</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=3+Rue+des+Francs-Bourgeois+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
                     </div>
-                    <div class="reco-card">
-                        <div>
-                            <div class="reco-name">L'Omelle</div>
-                            <div class="reco-type">Café littéraire</div>
-                            <div class="reco-desc">Un cadre chaleureux et inspirant pour laisser vagabonder sa pensée entre deux cours.</div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Cinéma Vox</span>
+                                <span class="reco-type">Films récents</span>
+                            </div>
+                            <div class="reco-desc">Pour visionner les dernières sorties grand public.</div>
                         </div>
-                        <a href="#" class="reco-link">En savoir plus →</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=17+Rue+des+Francs-Bourgeois+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Cinéma Star</span>
+                                <span class="reco-type">Art et essais & récents</span>
+                            </div>
+                            <div class="reco-desc">Le compromis parfait entre films d'auteur et nouveautés.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=27+Rue+du+Jeu-des-Enfants+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie 3 : Musées -->
+            <div class="reco-category">
+                <div class="reco-category-header">
+                    <div class="reco-category-title">3. Musées</div>
+                    <div class="reco-category-banner">Bon plan étudiant : Avec ta CVEC, tu possèdes la Carte Culture intégrée à ton Pass Campus de l'Unistra/INSA. Elle donne des tarifs réduits avantageux sur l'ensemble des musées de la ville, et l'entrée est de toute façon gratuite pour tous le premier dimanche du mois.</div>
+                </div>
+                <div class="reco-editorial-list">
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Musée d'Art Moderne et Contemporain (MAMCS)</span>
+                                <span class="reco-type">Art moderne</span>
+                            </div>
+                            <div class="reco-desc">Collections d'art moderne et contemporain d'envergure.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=1+Pl.+Hans-Jean-Arp+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Musée zoologique de Strasbourg</span>
+                                <span class="reco-type">Sciences & nature</span>
+                            </div>
+                            <div class="reco-desc">Découverte de la biodiversité et des espèces animales.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=29+Bd+de+la+Victoire+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Musée historique de la ville de Strasbourg</span>
+                                <span class="reco-type">Histoire</span>
+                            </div>
+                            <div class="reco-desc">Immersion dans le passé et l'évolution de Strasbourg.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=2+Rue+du+Vieux-Marché-aux-Poissons+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Jardin Botanique de l'Université</span>
+                                <span class="reco-type">Botanique</span>
+                            </div>
+                            <div class="reco-desc">Espace vert universitaire proche de l'INSA.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=28+Rue+Goethe+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Musée Tomi Ungerer</span>
+                                <span class="reco-type">Illustration</span>
+                            </div>
+                            <div class="reco-desc">Œuvres et dessins du célèbre illustrateur strasbourgeois.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=2+Av.+de+la+Marseillaise+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Musée de l'Œuvre-Notre-Dame</span>
+                                <span class="reco-type">Art médiéval</span>
+                            </div>
+                            <div class="reco-desc">Trésors sculptés et art du Moyen Âge rhénan.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=3+Pl.+du+Château+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Musée des Beaux-Arts</span>
+                                <span class="reco-type">Beaux-Arts</span>
+                            </div>
+                            <div class="reco-desc">Peintures européennes du XIVe siècle à 1871.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=2+Pl.+du+Château+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catégorie 4 : Lieux de spectacle vivant -->
+            <div class="reco-category">
+                <div class="reco-category-header">
+                    <div class="reco-category-title">4. Lieux de spectacle vivant</div>
+                    <div class="reco-category-banner">Super bon plan : Grâce à la Carte Culture étudiante, les places pour les grands spectacles à l'Opéra ou au TNS reviennent généralement à 6 euros seulement !</div>
+                </div>
+                <div class="reco-editorial-list">
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Théâtre alsacien de Strasbourg (Opéra national du Rhin)</span>
+                                <span class="reco-type">Opéra & Théâtre</span>
+                            </div>
+                            <div class="reco-desc">Représentations théâtrales et lyriques sur la place Broglie.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=18+Pl.+Broglie+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">Théâtre national de Strasbourg (TNS)</span>
+                                <span class="reco-type">Théâtre national</span>
+                            </div>
+                            <div class="reco-desc">Créations dramatiques contemporaines et classiques majeures.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=1+Av.+de+la+Marseillaise+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
+                    </div>
+                    <div class="reco-editorial-item">
+                        <div class="reco-info-group">
+                            <div class="reco-meta-line">
+                                <span class="reco-name">TJP Strasbourg - Centre Dramatique National</span>
+                                <span class="reco-type">Spectacle vivant</span>
+                            </div>
+                            <div class="reco-desc">Scène pluridisciplinaire.</div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=7+Rue+des+Balayeurs+67000+Strasbourg" target="_blank" class="reco-link">Google Maps →</a>
                     </div>
                 </div>
             </div>
