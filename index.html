@@ -539,7 +539,6 @@
             .hero {
                 margin-bottom: 20px;
             }
-            /* Adaptation unifiée des titres de pages sur mobile pour éviter les dépassements (notamment Recommandations) */
             .hero h1 {
                 font-size: 34px;
                 letter-spacing: -1px;
@@ -633,19 +632,6 @@
                 </div>
             </div>
         </div>
-
-        <div style="width: 100%; display: flex; justify-content: center; margin-top: 60px; padding-bottom: 60px;">
-            <div style="width: 100%; max-width: 1600px; padding: 0 40px; display: flex; flex-direction: row; gap: 20px; box-sizing: border-box; justify-content: center;">
-                <video style="width: 48%; height: auto; max-height: 80vh; object-fit: contain; background: #000;" controls>
-                    <source src="montage_rendu_01.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture de vidéos.
-                </video>
-                <video style="width: 48%; height: auto; max-height: 80vh; object-fit: contain; background: #000;" controls>
-                    <source src="rendu_off_04.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture de vidéos.
-                </video>
-            </div>
-        </div>
     </div>
 
     <!-- PAGE : SPECTRE -->
@@ -713,6 +699,17 @@
             <div class="scroll-hint">Partage et échange</div>
         </div>
 
+        <!-- VIDÉO DIRECTEMENT EN DESSOUS DU TITRE/SOUS-TITRE -->
+        <div style="width: 100%; display: flex; justify-content: center; margin-top: 40px; margin-bottom: 20px;">
+            <div style="width: 100%; max-width: 1000px; padding: 0 20px; box-sizing: border-box;">
+                <video style="width: 100%; height: auto; max-height: 75vh; object-fit: contain; background: #000; display: block; margin: 0 auto;" controls>
+                    <source src="montage_rendu_01.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+            </div>
+        </div>
+
+        <!-- EXPLICATIONS EN DESSOUS DE LA VIDÉO -->
         <div class="content-grid">
             <div class="col-left">
                 <div class="section-label">Espace d'échange</div>
@@ -733,15 +730,6 @@
                 </div>
             </div>
         </div>
-
-        <div style="width: 100%; display: flex; justify-content: center; margin-top: 60px; padding-bottom: 60px;">
-            <div style="width: 100%; max-width: 1000px; padding: 0 20px; box-sizing: border-box;">
-                <video style="width: 100%; height: auto; max-height: 75vh; object-fit: contain; background: #000; display: block; margin: 0 auto;" controls>
-                    <source src="montage_rendu_01.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture de vidéos.
-                </video>
-            </div>
-        </div>
     </div>
 
     <!-- ONGLET : THÈMES CRÉATIFS -->
@@ -752,13 +740,15 @@
         </div>
 
         <div style="max-width: 900px; margin: 0 auto;">
-            <div style="margin-top: 20px; margin-bottom: 50px; display: flex; flex-direction: column; gap: 15px;">
+            <!-- VIDÉO DIRECTEMENT EN DESSOUS DU TITRE/SOUS-TITRE -->
+            <div style="margin-top: 40px; margin-bottom: 50px; display: flex; flex-direction: column; gap: 15px;">
                 <video width="100%" controls>
                     <source src="rendu_off_04.mp4" type="video/mp4">
                     Votre navigateur ne supporte pas la lecture de vidéos.
                 </video>
             </div>
             
+            <!-- EXPLICATIONS EN DESSOUS DE LA VIDÉO -->
             <div class="creative-block">
                 <div class="creative-section-title">Défi du moment</div>
                 <div class="creative-title">Écrire un poème sur sa famille en alexandrins</div>
