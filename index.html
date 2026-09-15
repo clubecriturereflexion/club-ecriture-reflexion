@@ -175,7 +175,7 @@
             text-align: justify;
         }
 
-        /* SECTION RECOMMANDATIONS D'ADRESSES (STYLE ÉDITORIAL CORRIGÉ MOBILE) */
+        /* SECTION RECOMMANDATIONS D'ADRESSES */
         .reco-category {
             margin-bottom: 70px;
         }
@@ -187,7 +187,7 @@
         }
 
         .reco-category-title {
-            font-size: 10px;
+            font-size: 20px;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--text-color);
@@ -539,8 +539,10 @@
             .hero {
                 margin-bottom: 20px;
             }
+            /* Adaptation unifiée des titres de pages sur mobile pour éviter les dépassements (notamment Recommandations) */
             .hero h1 {
-                font-size: 50px;
+                font-size: 34px;
+                letter-spacing: -1px;
             }
             .content-grid {
                 grid-template-columns: 1fr;
@@ -554,7 +556,6 @@
             .info-block {
                 margin-bottom: 15px;
             }
-            /* Ajustement mobile spécifique pour fluidifier l'affichage des recos */
             .reco-editorial-item {
                 flex-direction: column;
                 align-items: flex-start;
