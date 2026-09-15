@@ -670,6 +670,621 @@
         </nav>
     </header>
 
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Écriture et Réflexion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #181817;
+            --text-color: #f6f7e6;
+            --muted-color: #d6d6ca;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION RESPONSIVE */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            position: relative;
+            z-index: 100;
+            background-color: var(--bg-color);
+        }
+
+        .logo img {
+            height: 75px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: font-weight 0.2s ease;
+            white-space: nowrap;
+        }
+
+        nav a.active-nav {
+            font-weight: 800;
+        }
+
+        nav a:hover {
+            color: var(--muted-color);
+        }
+
+        /* MENU BURGER MOBILE */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        /* PAGES */
+        .page {
+            display: none;
+            padding: 20px 60px 80px 60px;
+            min-height: calc(100vh - 100px);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ACCUEIL - SECTION HERO */
+        .hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 120px;
+            font-weight: 800;
+            line-height: 1.05;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .scroll-hint {
+            margin-top: 40px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--muted-color);
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 30px;
+            background-color: var(--muted-color);
+            margin: 12px auto 0 auto;
+        }
+
+        /* GRILLE COMMUNE AUX PAGES */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            margin-top: 40px;
+            padding-top: 60px;
+            border-top: 1px solid #dcd8d0;
+        }
+
+        .col-left .section-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 25px;
+        }
+
+        .col-left h2 {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            text-align: justify;
+        }
+
+        .col-right .info-block {
+            margin-bottom: 40px;
+        }
+
+        .col-right .info-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 10px;
+        }
+
+        .col-right p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #87867e;
+            text-align: justify;
+        }
+
+        /* SECTION RECOMMANDATIONS D'ADRESSES (STYLE ÉDITORIAL CORRIGÉ MOBILE) */
+        .reco-category {
+            margin-bottom: 70px;
+        }
+
+        .reco-category-header {
+            margin-bottom: 30px;
+            border-left: 2px solid var(--text-color);
+            padding-left: 15px;
+        }
+
+        .reco-category-title {
+            font-size: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .reco-category-banner {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--muted-color);
+            font-style: italic;
+        }
+
+        .reco-editorial-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .reco-editorial-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .reco-editorial-item:first-child {
+            border-top: 1px solid #e8e4dc;
+        }
+
+        .reco-info-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .reco-meta-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px 15px;
+        }
+
+        .reco-name {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: var(--text-color);
+        }
+
+        .reco-type {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            font-weight: 600;
+        }
+
+        .reco-desc {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #d6d6ca;
+        }
+
+        .reco-link {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--text-color);
+            padding-bottom: 2px;
+            white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s;
+            align-self: center;
+        }
+
+        .reco-link:hover {
+            color: var(--muted-color);
+            border-color: var(--muted-color);
+        }
+
+        /* SECTION THÈMES CRÉATIFS */
+        .creative-section-title {
+            font-size: 14px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 25px;
+            border-left: 2px solid var(--text-color);
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .creative-block {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e8e4dc;
+        }
+
+        .creative-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .creative-block p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--muted-color);
+            text-align: justify;
+        }
+
+        .winner-box {
+            margin-top: 25px;
+            padding-left: 20px;
+            border-left: 2px solid var(--text-color);
+        }
+
+        .winner-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* LISTE DES PARUTIONS (SPECTRE) */
+        .issues-container {
+            max-width: 600px;
+            margin: 80px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            align-items: center;
+            transition: max-width 0.4s ease;
+        }
+
+        .issue-card-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        .issue-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+
+        .issue-cover {
+            width: 260px;
+            height: 365px;
+            object-fit: cover;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease;
+        }
+
+        .issue-cover:hover {
+            transform: scale(1.03);
+        }
+
+        .issue-number {
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .issue-upcoming {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            font-weight: 600;
+            padding: 40px 0;
+            text-align: center;
+            width: 100%;
+            border-top: 1px dashed #dcd8d0;
+        }
+
+        .issue-articles-panel {
+            display: none;
+            width: 100%;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #dcd8d0;
+            animation: fadeIn 0.4s ease forwards;
+            text-align: left;
+        }
+
+        .issue-card-wrapper.expanded {
+            max-width: 850px;
+        }
+
+        .issue-card-wrapper.expanded .issue-main {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 50px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .issue-card-wrapper.expanded .issue-articles-panel {
+            display: block;
+            margin-top: 0;
+            margin-left: 0;
+            width: calc(100% - 310px);
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .articles-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .articles-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e8e4dc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .articles-list li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .articles-list li a:hover {
+            color: var(--muted-color);
+        }
+
+        .articles-list li span {
+            font-size: 12px;
+            color: var(--muted-color);
+            white-space: nowrap;
+        }
+
+        .read-all-btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: #181817;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .read-all-btn:hover {
+            background-color: var(--muted-color);
+        }
+
+        .btn-sources {
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 10px;
+            padding: 12px 20px;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--text-color);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-sources:hover {
+            background-color: var(--text-color);
+            color: #181817;
+        }
+
+        .spectre-disclaimer {
+            max-width: 700px;
+            margin: 60px auto 0 auto;
+            text-align: justify;
+            font-size: 13px;
+            color: var(--muted-color);
+            line-height: 1.5;
+            border-top: 1px solid #e8e4dc;
+            padding-top: 25px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ADAPTATION MOBILE */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px;
+            }
+            .logo img {
+                height: 55px;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background-color: var(--bg-color);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+            nav.nav-open {
+                right: 0;
+            }
+            nav a {
+                font-size: 14px;
+                letter-spacing: 1.5px;
+            }
+            .page {
+                padding: 10px 15px 40px 15px;
+            }
+            .hero {
+                margin-bottom: 20px;
+            }
+            .hero h1 {
+                font-size: 50px;
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 15px;
+                padding-top: 20px;
+            }
+            .col-left h2 {
+                font-size: 32px;
+            }
+            .info-block {
+                margin-bottom: 15px;
+            }
+            /* Ajustement mobile spécifique pour fluidifier l'affichage des recos */
+            .reco-editorial-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .reco-link {
+                align-self: flex-start;
+                margin-top: 5px;
+            }
+            .issue-card-wrapper.expanded .issue-main {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .issue-card-wrapper.expanded .issue-articles-panel {
+                width: 100%;
+                margin-top: 25px;
+                padding-top: 25px;
+                border-top: 1px solid #dcd8d0;
+            }
+            .read-all-btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .btn-sources {
+                margin-left: 0;
+                margin-top: 0;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRE DE NAVIGATION -->
+    <header>
+        <div class="logo">
+            <a href="#" onclick="showPage('accueil', event)">
+                <img src="logo_cer_blanc.png" alt="Logo Club ER">
+            </a>
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="main-nav">
+            <a href="#" id="nav-spectre" onclick="showPage('spectre', event)">Spectre</a>
+            <a href="#" id="nav-borne" onclick="showPage('borne', event)">Borne de lecture</a>
+            <a href="#" id="nav-creatif" onclick="showPage('creatif', event)">Thèmes créatifs</a>
+            <a href="#" id="nav-recommandations" onclick="showPage('recommandations', event)">Recommandations</a>
+        </nav>
+    </header>
+
     <!-- PAGE 1 : ACCUEIL -->
     <div id="accueil" class="page active">
         <div class="hero">
@@ -677,7 +1292,6 @@
             <div class="scroll-line"></div>
         </div>
 
-        <!-- La grille de texte (Le club + Nos actions) -->
         <div class="content-grid">
             <div class="col-left">
                 <div class="section-label">Le club</div>
@@ -690,9 +1304,7 @@
                 </div>
             </div>
         </div>
-        <!-- Fin de la grille -->
 
-        <!-- Le bloc vidéos est maintenant SORTI de la grille et prend toute la largeur -->
         <div style="width: 100%; display: flex; justify-content: center; margin-top: 60px; padding-bottom: 60px;">
             <div style="width: 100%; max-width: 1600px; padding: 0 40px; display: flex; flex-direction: row; gap: 20px; box-sizing: border-box; justify-content: center;">
                 <video style="width: 48%; height: auto; max-height: 80vh; object-fit: contain; background: #000;" controls>
@@ -705,10 +1317,9 @@
                 </video>
             </div>
         </div>
-
     </div>
 
-    <!-- PAGE 2 : SPECTRE -->
+    <!-- PAGE : SPECTRE -->
     <div id="spectre" class="page">
         <div class="hero" style="height: 40vh;">
             <h1>Spectre</h1>
@@ -766,14 +1377,13 @@
         </div>
     </div>
 
-<!-- PAGE 3 : BORNE DE LECTURE -->
+    <!-- PAGE : BORNE DE LECTURE -->
     <div id="borne" class="page">
         <div class="hero" style="height: 40vh;">
             <h1>Borne de lecture</h1>
             <div class="scroll-hint">Partage et échange</div>
         </div>
 
-        <!-- La grille de texte (reste propre de chaque côté) -->
         <div class="content-grid">
             <div class="col-left">
                 <div class="section-label">Espace d'échange</div>
@@ -794,9 +1404,7 @@
                 </div>
             </div>
         </div>
-        <!-- Fin de la grille -->
 
-        <!-- La vidéo unique, sortie de la grille, centrée et responsive -->
         <div style="width: 100%; display: flex; justify-content: center; margin-top: 60px; padding-bottom: 60px;">
             <div style="width: 100%; max-width: 1000px; padding: 0 20px; box-sizing: border-box;">
                 <video style="width: 100%; height: auto; max-height: 75vh; object-fit: contain; background: #000; display: block; margin: 0 auto;" controls>
@@ -805,38 +1413,52 @@
                 </video>
             </div>
         </div>
-
     </div>
 
-    <!-- PAGE 4 : COMMUNAUTÉ -->
-    <div id="communaute" class="page">
+    <!-- ONGLET : THÈMES CRÉATIFS -->
+    <div id="creatif" class="page">
         <div class="hero" style="height: 40vh;">
-            <h1>Communauté</h1>
-            <div class="scroll-hint">Les recommandations culturelles & les thèmes créatifs</div>
+            <h1>Thèmes créatifs</h1>
+            <div class="scroll-hint">Stimuler votre imagination</div>
         </div>
 
-        <div class="content-grid">
-            <div class="col-left">
-                <div class="section-label">Espace participatif</div>
-                <h2>Apprenez à découvrir les insassiens et vous même à travers nos recommandations et nos défis créatifs.</h2>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="margin-top: 20px; margin-bottom: 50px; display: flex; flex-direction: column; gap: 15px;">
+                <video width="100%" controls>
+                    <source src="rendu_off_04.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
             </div>
-            <div class="col-right">
-                <div class="info-block">
-                    <div class="info-label">Participez</div>
-                    <p>Cet onglet est le vôtre. Retrouvez ici nos meilleures adresses à Strasbourg sélectionnées par les membres du club, et venez relever les défis créatifs proposés pour stimuler votre imagination.</p>
+            
+            <div class="creative-block">
+                <div class="creative-section-title">Défi du moment</div>
+                <div class="creative-title">Écrire un poème sur sa famille en alexandrins</div>
+                <p>Pour ce nouveau mois, l'exercice demande de respecter la rime classique en vers de douze pieds, tout en capturant l'essence, les travers ou les souvenirs de votre foyer. Laissez libre cours à votre plume !</p>
+            </div>
+
+            <div class="creative-block" style="border-bottom: none;">
+                <div class="creative-section-title">Ancien challenge créatif</div>
+                <div class="creative-title" style="font-size: 22px;">Le voyage immobile</div>
+                <p style="margin-bottom: 20px;">Le thème précédent consistait à raconter une grande aventure sans bouger de sa chaise.</p>
+                
+                <div class="winner-box">
+                    <div class="winner-label">Texte gagnant — par Léa (3e année)</div>
+                    <p style="font-style: italic; color: #d6d6ca; line-height: 1.7;">
+                        "Assise face au radiateur qui gronde, je navigue entre les plis de la nappe cirée. Le café refroidit, mais les Andes m'attendent derrière le givre de la vitre. Pas besoin de billet de train quand l'esprit s'accroche au souvenir d'une vieille carte postale jaunie par le soleil d'août..."
+                    </p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- SOUS-ONGLETS -->
-        <div class="sub-nav">
-            <button class="sub-nav-btn active-sub" onclick="showSubTab('sondages', event)">Recommandations d'adresses</button>
-            <button class="sub-nav-btn" onclick="showSubTab('creatif', event)">Thèmes créatifs</button>
+    <!-- ONGLET : RECOMMANDATIONS -->
+    <div id="recommandations" class="page">
+        <div class="hero" style="height: 40vh;">
+            <h1>Recommandations</h1>
+            <div class="scroll-hint">Les bonnes adresses du club</div>
         </div>
 
-        <!-- SOUS-ONGLET 1 : RECOMMANDATIONS D'ADRESSES -->
-        <div id="sub-sondages" class="sub-tab-content active">
-            
+        <div style="max-width: 900px; margin: 0 auto;">
             <div style="margin-bottom: 50px; text-align: center;">
                 <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; letter-spacing: -0.5px;">Culture à Strasbourg : Les Recommandations du club</h3>
                 <p style="font-size: 15px; color: var(--muted-color); max-width: 650px; margin: 0 auto; line-height: 1.6;">Sélection d'adresses étudiantes culturelles de la ville.</p>
@@ -912,12 +1534,11 @@
                         <div class="reco-info-group">
                             <div class="reco-meta-line">
                                 <span class="reco-name">Librairies Dinali</span>
-                                <span class="reco-type">Chaîne de librairies avec une offre de seconde main.</span>
+                                <span class="reco-type">Chaîne de librairies (seconde main).</span>
                             </div>
                             <div class="reco-desc">Il y en a plusieurs dans la ville.</div>
                         </div>
                         <a href="https://www.google.com/maps/place/Librairie+Dinali+M%C3%A9sange/@48.5841153,7.7458625,16z/data=!3m1!4b1!4m6!3m5!1s0x4796c851f7530b93:0xa988e24c996f902f!8m2!3d48.5841153!4d7.7484374!16s%2Fg%2F1tfbxdhs?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="reco-link">Google Maps →</a>
-
                     </div>
                     <div class="reco-editorial-item">
                         <div class="reco-info-group">
@@ -976,7 +1597,7 @@
             <div class="reco-category">
                 <div class="reco-category-header">
                     <div class="reco-category-title">3. Musées</div>
-                    <div class="reco-category-banner">Bon plan étudiant : Avec ta CVEC, tu possèdes la Carte Culture intégrée à ton Pass Campus de l'Unistra/INSA. Elle donne des tarifs réduits avantageux sur l'ensemble des musées de la ville, et l'entrée est de toute façon gratuite pour tous le premier dimanche du mois.</div>
+                    <div class="reco-category-banner">Bon plan étudiant : Avec ta CVEC, tu possèdes la Carte Culture intégrée à ton Pass Campus de l'Unistra/INSA. Elle donne des tarifs réduits avantageux sur l'ensemble des musées de la ville, et l'entrée est gratuite pour tous le premier dimanche du mois.</div>
                 </div>
                 <div class="reco-editorial-list">
                     <div class="reco-editorial-item">
@@ -1091,35 +1712,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-
-        <!-- SOUS-ONGLET 2 : THÈMES CRÉATIFS -->
-        <div id="sub-creatif" class="sub-tab-content">
-            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
-                    <video width="100%" controls>
-                        <source src="rendu_off_04.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la lecture de vidéos.
-                    </video>
-                </div>
-            <div class="creative-block">
-                <div class="creative-section-title">Défi du moment</div>
-                <div class="creative-title">Écrire un poème sur sa famille en alexandrins</div>
-                <p>Pour ce nouveau mois, l'exercice demande de respecter la rime classique en vers de douze pieds, tout en capturant l'essence, les travers ou les souvenirs de votre foyer. Laissez libre cours à votre plume !</p>
-            </div>
-
-            <div class="creative-block" style="border-bottom: none;">
-                <div class="creative-section-title">Ancien challenge créatif</div>
-                <div class="creative-title" style="font-size: 22px;">Le voyage immobile</div>
-                <p style="margin-bottom: 20px;">Le thème précédent consistait à raconter une grande aventure sans bouger de sa chaise.</p>
-                
-                <div class="winner-box">
-                    <div class="winner-label">Texte gagnant — par Léa (3e année)</div>
-                    <p style="font-style: italic; color: #444; line-height: 1.7;">
-                        "Assise face au radiateur qui gronde, je navigue entre les plis de la nappe cirée. Le café refroidit, mais les Andes m'attendent derrière le givre de la vitre. Pas besoin de billet de train quand l'esprit s'accroche au souvenir d'une vieille carte postale jaunie par le soleil d'août..."
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -1139,12 +1731,10 @@
             document.getElementById(pageId).classList.add('active');
 
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-nav'));
-            if(pageId === 'spectre') {
-                document.getElementById('nav-spectre').classList.add('active-nav');
-            } else if(pageId === 'borne') {
-                document.getElementById('nav-borne').classList.add('active-nav');
-            } else if(pageId === 'communaute') {
-                document.getElementById('nav-communaute').classList.add('active-nav');
+            
+            const activeNavEl = document.getElementById('nav-' + pageId);
+            if(activeNavEl) {
+                activeNavEl.classList.add('active-nav');
             }
             
             const nav = document.getElementById('main-nav');
@@ -1153,14 +1743,6 @@
             }
 
             window.scrollTo(0, 0);
-        }
-
-        function showSubTab(tabId, event) {
-            document.querySelectorAll('.sub-tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.sub-nav-btn').forEach(btn => btn.classList.remove('active-sub'));
-
-            document.getElementById('sub-' + tabId).classList.add('active');
-            event.target.classList.add('active-sub');
         }
 
         function toggleIssue(issueId) {
