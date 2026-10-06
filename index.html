@@ -185,6 +185,40 @@
         }
 
         /* SECTION RECOMMANDATIONS D'ADRESSES */
+        .reco-filter-box {
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .reco-filter-label {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            font-weight: 600;
+        }
+
+        .reco-select {
+            background-color: #222220;
+            color: var(--text-color);
+            border: 1px solid #33322e;
+            padding: 10px 18px;
+            font-family: inherit;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .reco-select:focus {
+            border-color: var(--text-color);
+        }
+
         .reco-category {
             margin-bottom: 70px;
         }
@@ -289,7 +323,7 @@
             background-color: rgba(255, 255, 255, 0.03);
             border: 1px solid #33322e;
             padding: 30px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             text-align: center;
         }
 
@@ -601,6 +635,10 @@
             .info-block {
                 margin-bottom: 15px;
             }
+            .reco-filter-box {
+                flex-direction: column;
+                gap: 8px;
+            }
             .reco-editorial-item {
                 flex-direction: column;
                 align-items: flex-start;
@@ -812,27 +850,6 @@
                 </div>
             </div>
         </div>
-
-        <!--<div style="max-width: 900px; margin: 0 auto;">
-            <div class="creative-block">
-                <div class="creative-section-title">Défi du moment</div>
-                <div class="creative-title">Écrire un poème sur sa famille en alexandrins</div>
-                <p>Pour ce nouveau mois, l'exercice demande de respecter la rime classique en vers de douze pieds, tout en capturant l'essence, les travers ou les souvenirs de votre foyer. Laissez libre cours à votre plume !</p>
-            </div>
-
-            <div class="creative-block" style="border-bottom: none;">
-                <div class="creative-section-title">Ancien challenge créatif</div>
-                <div class="creative-title" style="font-size: 22px;">Le voyage immobile</div>
-                <p style="margin-bottom: 20px;">Le thème précédent consistait à raconter une grande aventure sans bouger de sa chaise.</p>
-                
-                <div class="winner-box">
-                    <div class="winner-label">Texte gagnant — par Léa (3e année)</div>
-                    <p style="font-style: italic; color: #d6d6ca; line-height: 1.7;">
-                        "Assise face au radiateur qui gronde, je navigue entre les plis de la nappe cirée. Le café refroidit, mais les Andes m'attendent derrière le givre de la vitre. Pas besoin de billet de train quand l'esprit s'accroche au souvenir d'une vieille carte postale jaunie par le soleil d'août..."
-                    </p>
-                </div>
-            </div>
-        </div>-->
     </div>
 
     <!-- ONGLET : RECOMMANDATIONS -->
@@ -859,8 +876,22 @@
                 </a>
             </div>
 
+            <!-- MENU DÉROULANT POUR FILTRER PAR CATÉGORIE -->
+            <div class="reco-filter-box">
+                <label for="category-select" class="reco-filter-label">Catégorie :</label>
+                <select id="category-select" class="reco-select" onchange="filterRecommendations(this.value)">
+                    <option value="all">Toutes les catégories</option>
+                    <option value="lecture">1. Acheter de la lecture</option>
+                    <option value="cinemas">2. Cinémas</option>
+                    <option value="musees">3. Musées</option>
+                    <option value="spectacle">4. Lieux de spectacle vivant</option>
+                    <option value="hybrides">5. Lieux hybrides</option>
+                    <option value="divers">6. Divers</option>
+                </select>
+            </div>
+
             <!-- Catégorie 1 : Acheter de la lecture -->
-            <div class="reco-category">
+            <div class="reco-category" data-category="lecture">
                 <div class="reco-category-header">
                     <div class="reco-category-title">1. Acheter de la lecture</div>
                 </div>
@@ -945,12 +976,11 @@
                         </div>
                         <a href="https://www.google.com/maps/place/Librairie+du+monde+entier+(Gallimard)/@48.5838446,7.7435198,17z/data=!3m2!4b1!5s0x4796c84dc2837891:0x5999f5a370adb364!4m6!3m5!1s0x4796c9c6b634e261:0x46392170d40f8189!8m2!3d48.5838446!4d7.7460947!16s%2Fg%2F11ll8yzgs8?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="reco-link">Google Maps →</a>
                     </div>
-                    
                 </div>
             </div>
 
             <!-- Catégorie 2 : Cinémas -->
-            <div class="reco-category">
+            <div class="reco-category" data-category="cinemas">
                 <div class="reco-category-header">
                     <div class="reco-category-title">2. Cinémas</div>
                     <div class="reco-category-banner">Bon plan étudiant : Utilise ton Pass Culture en présentant l'autocollant de ta carte universitaire INSA, et profite aussi des offres du dispositif régional Jeun'Est.</div>
@@ -990,7 +1020,7 @@
             </div>
 
             <!-- Catégorie 3 : Musées -->
-            <div class="reco-category">
+            <div class="reco-category" data-category="musees">
                 <div class="reco-category-header">
                     <div class="reco-category-title">3. Musées</div>
                     <div class="reco-category-banner">Bon plan étudiant : Avec ta CVEC, tu possèdes la Carte Culture intégrée à ton Pass Campus de l'Unistra/INSA. Elle donne des tarifs réduits avantageux sur l'ensemble des musées de la ville, et l'entrée est gratuite pour tous le premier dimanche du mois.</div>
@@ -1070,7 +1100,7 @@
             </div>
 
             <!-- Catégorie 4 : Lieux de spectacle vivant -->
-            <div class="reco-category">
+            <div class="reco-category" data-category="spectacle">
                 <div class="reco-category-header">
                     <div class="reco-category-title">4. Lieux de spectacle vivant</div>
                     <div class="reco-category-banner">Super bon plan : Grâce à la Carte Culture étudiante, les places pour les grands spectacles à l'Opéra ou au TNS reviennent généralement à 6 euros seulement !</div>
@@ -1110,7 +1140,7 @@
             </div>
 
             <!-- Catégorie 5 : Lieux hybrides -->
-            <div class="reco-category">
+            <div class="reco-category" data-category="hybrides">
                 <div class="reco-category-header">
                     <div class="reco-category-title">5. Lieux hybrides</div>
                     <div class="reco-category-banner">Des lieux où tu n'as pas besoin de choisir entre deux activités.</div>
@@ -1139,8 +1169,8 @@
                 </div>
             </div>
 
-            <!-- Catégorie 6 : Diverss -->
-            <div class="reco-category">
+            <!-- Catégorie 6 : Divers -->
+            <div class="reco-category" data-category="divers">
                 <div class="reco-category-header">
                     <div class="reco-category-title">6. Divers</div>
                     <div class="reco-category-banner">Des trucs qu'on ne sait pas où classer.</div>
@@ -1207,6 +1237,17 @@
 
             wrapper.classList.add('expanded');
             container.style.maxWidth = '850px';
+        }
+
+        function filterRecommendations(selectedCategory) {
+            const categories = document.querySelectorAll('.reco-category');
+            categories.forEach(cat => {
+                if (selectedCategory === 'all' || cat.getAttribute('data-category') === selectedCategory) {
+                    cat.style.display = 'block';
+                } else {
+                    cat.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
